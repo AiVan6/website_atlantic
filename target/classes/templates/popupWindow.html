@@ -1,0 +1,25 @@
+<div th:fragment="popupWindow" class="overlay" id="popupOverlay">
+  <div class="popup">
+
+    <h2 class="information-window-title">Как заказать?</h2><br>
+    <div class="information-window">
+      <p>На данный момент доставка в г.Бийске<br> осуществляется только на торговую точку.<br></p>
+      <p>Для оформления самовывоза пожалуйста,<br> <b>свяжитесь</b> с оператором по указанным<br> контактам или напишите в <b>социальные сети.</b><br>
+        Согласуйте список продукции, которую вы<br> хотели бы приобрести.<br></p>
+      <p>После согласования оператор скажет общую<br> сумму заказа и примерное время, когда заказ<br> будет готов.<br></p>
+      <p>Цены могут меняться<br>
+        <b>Точные цены уточняйте у оператора</b></p>
+    </div>
+    <br>
+    <h2 class="information-window-title">Контакты для связи</h2>
+
+    <div class="justify-content-center">
+      <div class="indentation">
+        <a href="#"><img src="/img/icons/icons8-логотип-telegram-48.png" /></a>
+        <a href="#"><img src="/img/icons/icons8-whatsapp-48.png" /></a>
+        <a href="#"><img src="/img/icons/icons8-телефон-40.png" /></a>
+      </div>
+    </div>
+    <div class="close" onclick="closePopup()"><img th:src="@{img/icons/close.png}"></div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text ="|${title}|"/>
+
+    <link rel="icon" href="/img/logo.png" type="image/x-icon">
+
+    <link media="screen" rel="stylesheet" href="/css/bootstrap.css" type="text/css"/>
+    <link media="screen" rel="stylesheet" href="/css/style.css" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script th:src="@{js/products.js}"></script>
+    <script th:src="@{js/swichList.js}"></script>
+    <script th:src="@{js/pop-up_window.js}"></script>
+
+</head>
+<body>
+
+<div class="indentation container">
+    <table>
+        <tr>
+            <td>
+                <div class="ml-3"><a href="/"><img th:src="@{img/icons/icons8-left.png}"/></a></div>
+            </td>
+            <td>
+                <form id="searchForm" th:action="@{/products}" method="get">
+                    <div class="ml-3"><input type="text" size="60" name="searchTerm" class="search" th:placeholder="Поиск..." autocomplete="none" th:autocomplete="off"/></div>
+                </form>
+            </td>
+            <td>
+                <div class="ml-3 ">
+                    <label>
+                        <div class="dropdown" id="dropdown-content">
+                            <button class="dropdown__button product-center" id="dropdown-button">
+                                <span class="dropdown_name text-white" id = "selected-option">Все</span>
+
+                                <div class="dropdown__icons">
+<!--                                    <i class="ri-arrow-down-s-line dropdown__arrow"></i>-->
+<!--                                    <i class="ri-close-line dropdown__close"></i>-->
+                                    <img class="dropdown__arrow" src="/img/icons/down.png"/>
+                                </div>
+                            </button>
+                            <ul class="dropdown__menu">
+                                <li class="dropdown__item">
+                                    <span class="dropdown_name text-white" onclick="selected(this)">Все</span>
+                                </li>
+                                <li class="dropdown__item">
+                                    <span class="dropdown__name text-white" onclick="selected(this)">ХК</span>
+                                </li>
+                                <li class="dropdown__item">
+                                    <span class="dropdown__name text-white" onclick="selected(this)">ГК</span>
+                                </li>
+                                <li class="dropdown__item">
+                                    <span class="dropdown__name text-white" onclick="selected(this)">Соленая</span>
+                                </li>
+                                <li class="dropdown__item">
+                                    <span class="dropdown__name text-white" onclick="selected(this)">Салаты</span>
+                                </li>
+                                <li class="dropdown__item">
+                                    <span class="dropdown__name text-white" onclick="selected(this)">Снеки</span>
+                                </li>
+                                <li class="dropdown__item">
+                                    <span class="dropdown__name text-white" onclick="selected(this)">Вяленая</span>
+                                </li>
+                                <li class="dropdown__item">
+                                    <span class="dropdown__name text-white" onclick="selected(this)">Сладости</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </label>
+<!--                    <form>-->
+<!--                        <label>-->
+<!--                            <select id="category"  onchange="start()" class="text-white">-->
+<!--                                <option value="Все" selected="selected">Все</option>-->
+<!--                                <option value="ХК">Х/К</option>-->
+<!--                                <option value="ГК">Г/К</option>-->
+<!--                                <option value="Соленая">Соленая</option>-->
+<!--                                <option value="Салат">Салаты</option>-->
+<!--                                <option value="Снеки">Снеки</option>-->
+<!--                                <option value="Вяленая">Вяленая</option>-->
+<!--                                <option value="Сладости">Сладости</option>-->
+<!--                            </select>-->
+<!--                        </label>-->
+<!--                    </form>-->
+                </div>
+            </td>
+            <td>
+                <div class="ml-3"><a href="document/price-list.xlsx"><img th:src="@{img/icons/dowloadPriceSmall.png}"/></a></div>
+            </td>
+        </tr>
+    </table>
+
+    <div id="base" class="indentation container" style=" justify-content: center;margin-bottom: 4%;">
+        <table id="products_table"></table>
+    </div>
+
+    <div th:insert="popupWindow :: popupWindow"></div>
+
+    <div class="overlay" id="mainDivImg"></div>
+
+    <script>
+
+        const modal = document.querySelector('#popupOverlay');
+        const modalImg = document.querySelector('#mainDivImg');
+
+        window.onclick = function (event) {
+            console.log(modal);
+            if (event.target === modal || event.target === modalImg) {
+                modal.style.display = 'none';
+                document.body.style.overflow = "";
+            }
+        };
+
+        function selected(str) {
+            if(str.textContent === "Салаты") {
+                str.textContent = str.textContent.slice(0, -1);
+                console.log(str.textContent);
+            }
+
+            let mainSpan = document.getElementById('selected-option');
+            // console.log(str.textContent);
+            mainSpan.innerHTML = str.textContent;
+            start(str.textContent);
+        }
+        showDropdown('dropdown-content','dropdown-button');
+    </script>
+
+
+</div>
+</body>
+</html>
