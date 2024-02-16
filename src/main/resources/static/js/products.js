@@ -11,6 +11,7 @@ function fillingProducts(data){
 
     for(let i = 0; i < data.length;){
         let tr = document.createElement('tr');
+        tr.id = 'tr_'+i;
 
         for(let j = 0; j < 3; j++,i++){
                 if (i === data.length)
@@ -64,14 +65,15 @@ function fillingProducts(data){
                 divHow.appendChild(button);
 
                 // td.appendChild(img);
-                //
                 // td.appendChild(name);
                 // td.appendChild(type);
                 div.appendChild(divImg);
                 div.appendChild(divName);
                 div.appendChild(divType);
                 div.appendChild(divHow);
+                td.className = "product-center";
                 td.appendChild(div);
+                tr.className = "product-center";
                 tr.appendChild(td);
             }
 
@@ -119,7 +121,7 @@ function start(select) {
         method: 'GET',
         success: function (data) {
             checkStyle(data,select);
-            obj = data;
+            toggleView();
         },
         error: function () {
             console.error('Ошибка при получении данных');
@@ -133,7 +135,7 @@ function main_products() {
         method: 'GET',
         success: function (data) {
             checkStyle(data);
-            obj = data;
+            toggleView();
         },
         error: function () {
             console.error('Ошибка при получении данных');
@@ -141,4 +143,32 @@ function main_products() {
     });
 }
 
+    console.log("hi!");
+    function toggleView() {
+        const productListContainer = document.getElementById('products-container');
+        const productsTable = document.getElementById('products_table');
+        const isMobileView = window.innerWidth < 768; // Предположим, что на мобильных устройствах используется список товаров
+        if (isMobileView) {
+            productListContainer.innerHTML = '';
+
+            productsTable.querySelectorAll('tbody').forEach(trElement => {
+                const productItem = document.createElement('div');
+                // productItem.style.paddingLeft = '10%';
+                productItem.classList.add('product-item');
+                productItem.innerHTML = trElement.innerHTML;
+                productListContainer.appendChild(productItem);
+            });
+            productsTable.style.display = 'none'; // Скрываем таблицу
+            productListContainer.style.display = 'block'; // Показываем контейнер с товарами
+        } else {
+            productsTable.style.display = 'block'; // Показываем таблицу
+            productListContainer.style.display = 'none'; // Скрываем контейнер
+        }
+    }
+    //toggleView();
+
+
 start("Все");
+
+window.addEventListener('load',toggleView);
+window.addEventListener('resize', toggleView);
