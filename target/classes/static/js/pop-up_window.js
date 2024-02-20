@@ -1,6 +1,6 @@
 
 function openPopup() {
-
+    console.log("!!!!!!!!!");
     document.getElementById('popupOverlay').style.display = 'flex';
     document.body.style.overflow = "hidden";
 }
@@ -10,9 +10,19 @@ function closePopup() {
     document.body.style.overflow = "";
 }
 
+function openRetractable() {
+    window.scroll(0,0);
+    document.getElementById('retractable').style.display = 'flex';
+    document.body.style.overflow = "hidden";
+}
+
+function closeRetractable() {
+    document.getElementById('retractable').style.display = 'none';
+    document.body.style.overflow = "";
+}
 
 function openImg(data) {
-    console.log(data.srcElement.currentSrc);
+    // console.log(data.srcElement.currentSrc);
     // let mainDiv = document.createElement('div');
     // mainDiv.className = "overlay";
 
@@ -46,13 +56,22 @@ function openImg(data) {
 }
 
 function closeImg() {
-    let mainDiv = document.getElementById('mainDiv');
+
+    let mainDiv = document.getElementById('mainDivImg');
     mainDiv.removeChild(document.getElementById('popupImg'));
 
-
-    // document.getElementById('popupImg').style.display = 'none';
+    document.getElementById('mainDivImg').style.display = 'none';
     document.body.style.overflow = "";
 }
 
 
+function upperPage(obj){
+    window.addEventListener('scroll', e => {
+        if (pageYOffset >= 220) {
+            obj.classList.add("op");
+        } else {
+            obj.classList.remove("op");
+        }
+    });
+}
 

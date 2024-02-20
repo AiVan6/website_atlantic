@@ -9,6 +9,7 @@
     /*right: 0;*/
     /*bottom: 0;*/
 
+
     /*height: 100%;*/
     /*width: 100%;*/
 }
@@ -41,24 +42,11 @@
     margin-top: 10%;
 }
 
-.line{
-    width: 10%;
-    height: 25%;
-    color: black;
-}
-
-.vertical-line {
-    position: relative;
-}
-
-.vertical-line::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 100%; /* Положение по центру */
-    border-left: 3px solid #000; /* Цвет и стиль линии */
-    height: 100%; /* Высота линии (можете настроить по своему усмотрению) */
+.line {
+    border-bottom: 2px solid #fff; /* Параметры линии */
+    width: 50%;
+    border-radius: 10%;
+    padding-bottom: 15px;
 }
 
 .header-elem-bold{
@@ -203,8 +191,6 @@ select option{
     font-family: "exo2-medium";
     src:url("../fonts/EXO_2/Exo2-Medium.ttf")  format("truetype");
 }
-
-
 
 
 
@@ -402,8 +388,8 @@ body.popup-open {
     text-align: left;
     font-size: 22px;
     padding: 20px 40px;
-
 }
+
 .information-window-title{
     text-align: center;
     font-family: "exo2-bold";
@@ -483,20 +469,24 @@ button::-moz-focus-inner {
     height: 100vh;
     /*background: url(../img/image1.png) no-repeat center;*/
     background-size: cover;
+    display: none;
+    justify-content: center;
     width: 100%;
     left: 0;
     top: 0;
 }
 
 @media (max-width: 767px) {
-    #products-table {
-        display: none; /* Скрываем таблицу по умолчанию на мобильных устройствах */
-    }
-
-    /*.popup-menu{*/
-    /*    */
+    /*#products-table {*/
+    /*    display: none; !* Скрываем таблицу по умолчанию на мобильных устройствах *!*/
     /*}*/
 
+    .line {
+        border-bottom: 2px solid #fff; /* Параметры линии */
+        width: 100%;
+        border-radius: 10%;
+        padding-bottom: 15px;
+    }
     .search {
         background-image: url(../img/icons/loupe.png);
         font-family: "exo2-regular";
@@ -511,6 +501,38 @@ button::-moz-focus-inner {
         width: 100%;
         background-color: #fff;
     }
+
+    .rectangle-big{
+        /*padding: 40px 250px;*/
+        padding: 5% 10%;
+
+        background: rgba(46, 169, 208, 0.43);
+        width:70%;
+    }
+
+    .about-us-text{
+        font-family: "ei-messiri-regular";
+        font-size: 20px;
+    }
+
+    .information-window{
+        font-family: "exo2-regular";
+        text-align: left;
+        font-size: 100%;
+        padding: 20px 0px;
+    }
+
+    /*.overlay {*/
+    /*    display: none;*/
+    /*    position: fixed;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
+    /*    width: 100%;*/
+    /*    height: 100%;*/
+    /*    background-color: rgba(0, 0, 0, 0.7);*/
+    /*    justify-content: center;*/
+    /*    align-items: center;*/
+    /*}*/
 
     .popup-menu{
         display: none;
@@ -548,7 +570,7 @@ button::-moz-focus-inner {
         float: none;
         text-align: center;
         width: 100%;
-        display: block !important;
+        flex-direction: column;
     }
 
     .rectangle-big{

@@ -48,45 +48,45 @@
                             </button>
                             <ul id="" class="dropdown__menu">
                                 <li class="dropdown__item">
-                                    <span class="dropdown_name text-white" onclick="selected(this)">Все</span>
+                                    <span class="dropdown_name text-white" onclick="selected(this,'')">Все</span>
                                 </li>
                                 <li class="dropdown__item">
-                                    <span class="dropdown__name text-white" onclick="selected(this)">ХК</span>
+                                    <span class="dropdown__name text-white" onclick="selected(this,'')">ХК</span>
                                 </li>
                                 <li class="dropdown__item">
-                                    <span class="dropdown__name text-white" onclick="selected(this)">ГК</span>
+                                    <span class="dropdown__name text-white" onclick="selected(this,'')">ГК</span>
                                 </li>
                                 <li class="dropdown__item">
-                                    <span class="dropdown__name text-white" onclick="selected(this)">Соленая</span>
+                                    <span class="dropdown__name text-white" onclick="selected(this,'')">Соленая</span>
                                 </li>
                                 <li class="dropdown__item">
-                                    <span class="dropdown__name text-white" onclick="selected(this)">Салаты</span>
+                                    <span class="dropdown__name text-white" onclick="selected(this,'')">Салаты</span>
                                 </li>
                                 <li class="dropdown__item">
-                                    <span class="dropdown__name text-white" onclick="selected(this)">Снеки</span>
+                                    <span class="dropdown__name text-white" onclick="selected(this,'')">Снеки</span>
                                 </li>
                                 <li class="dropdown__item">
-                                    <span class="dropdown__name text-white" onclick="selected(this)">Вяленая</span>
+                                    <span class="dropdown__name text-white" onclick="selected(this,'')">Вяленая</span>
                                 </li>
                                 <li class="dropdown__item">
-                                    <span class="dropdown__name text-white" onclick="selected(this)">Сладости</span>
+                                    <span class="dropdown__name text-white" onclick="selected(this,'')">Сладости</span>
                                 </li>
                                 <li class="dropdown__item">
-                                    <span class="dropdown__name text-white" onclick="selected(this)">Другое</span>
+                                    <span class="dropdown__name text-white" onclick="selected(this,'')">Другое</span>
                                 </li>
                             </ul>
                         </div>
                     </label>
                 </div>
                 <div class="ml-3 menu-category">
-                    <a href="/retractable_window" >
+                    <div onclick="openRetractable()" >
                         <img th:src="@{img/icons/menu.png}"/>
-                    </a>
+                    </div>
                 </div>
 
             </td>
             <td>
-<!--                <div id="download-priсe" class="ml-3"><a href="document/price-list.xlsx"><img th:src="@{img/icons/dowloadPriceSmall.png}"/></a></div>-->
+                <div id="download-priсe" class="ml-3 popup-menu"><a href="document/price-list.xlsx"><img th:src="@{img/icons/dowloadPriceSmall.png}"/></a></div>
 <!--                <div class="ml-3"><img th:src="@{img/icons/menu.png}"/></a></div>-->
             </td>
         </tr>
@@ -118,6 +118,7 @@
     <div class="overlay" id="mainDivImg"></div>
 
     <script>
+        // scroll(false);
 
         const modalImg = document.querySelector('#mainDivImg');
         const modal = document.querySelector('#popupOverlay');
@@ -139,52 +140,18 @@
             }
         };
 
-        function selected(str) {
+        function selected(str,method) {
             if(str.textContent === "Салаты") {
-                str.textContent = str.textContent.slice(0, -1);
-                // console.log(str.textContent);
+                start("Салат");
             }
-
-            let mainSpan = document.getElementById('selected-option');
-            // console.log(str.textContent);
-            mainSpan.innerHTML = str.textContent;
-            start(str.textContent);
+            else {
+                start(str.textContent);
+            }
+            if(method === "retractable"){
+                closeRetractable();
+            }
         }
         showDropdown('dropdown-content','dropdown-button');
-
-
-///////////////////////////////////////////////////////////////
-
-        // const menuCategory = document.getElementById('popup-menu');
-        //
-        // var downloadPriceContent = document.getElementById('download-priсe').innerHTML;
-        // var popupMenuContent = document.getElementById('popup-menu').innerHTML;
-        //
-        // window.addEventListener('load', () => {
-        //     const productList = document.getElementById('product-list');
-        //     function updateClass() {
-        //         if (window.innerWidth >= 1040) {
-        //             document.getElementById('download-priсe').remove();
-        //             document.getElementById('popup-menu').remove();
-        //
-        //             let img = document.createElement('img');
-        //             let a = document.createElement('a');
-        //             img.src = "/img/icons/menu.png";
-        //             a.appendChild(img);
-        //             menuCategory.appendChild(a);
-        //
-        //         } else {
-        //             menuCategory.remove();
-        //
-        //             var newElement = document.createElement('div');
-        //             newElement.id = 'download-price';
-        //             newElement.innerHTML = downloadPriceContent;
-        //
-        //             document.body.appendChild(newElement);
-        //         }
-        //     }
-        //     updateClass();
-        //     window.addEventListener('resize', updateClass);});
 
     </script>
 

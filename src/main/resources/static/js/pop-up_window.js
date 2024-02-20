@@ -1,6 +1,6 @@
 
 function openPopup() {
-
+    console.log("!!!!!!!!!");
     document.getElementById('popupOverlay').style.display = 'flex';
     document.body.style.overflow = "hidden";
 }
@@ -10,6 +10,16 @@ function closePopup() {
     document.body.style.overflow = "";
 }
 
+function openRetractable() {
+    window.scroll(0,0);
+    document.getElementById('retractable').style.display = 'flex';
+    document.body.style.overflow = "hidden";
+}
+
+function closeRetractable() {
+    document.getElementById('retractable').style.display = 'none';
+    document.body.style.overflow = "";
+}
 
 function openImg(data) {
     // console.log(data.srcElement.currentSrc);
