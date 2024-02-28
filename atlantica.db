@@ -1,0 +1,247 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.1
+-- Dumped by pg_dump version 16.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: products; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.products (
+    id integer NOT NULL,
+    name text NOT NULL,
+    img text,
+    type text
+);
+
+
+ALTER TABLE public.products OWNER TO postgres;
+
+--
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.products_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.products_id_seq OWNER TO postgres;
+
+--
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
+
+
+--
+-- Name: products id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
+
+
+--
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.products (id, name, img, type) FROM stdin;
+1	Язь пласт	img/products/ХК/Язь пласт.jpg	ХК
+2	Кеты боковник	img/products/ХК/Кеты боковник.jpg	ХК
+3	КРЕВЕТКА	img/products/ХК/КРЕВЕТКА.png	ХК
+4	Скумбрия	img/products/ХК/Скумбрия.jpg	ХК
+5	Тюлька	img/products/ХК/Тюлька.jpg	ХК
+6	Форель балык	img/products/ХК/Форель балык.jpg	ХК
+7	Масляная филе	img/products/ХК/Масляная филе.jpg	ХК
+8	Камбала без головы	img/products/ХК/Камбала без головы.jpg	ХК
+9	Форель боковник	img/products/ХК/Форель боковник.jpg	ХК
+10	Кета	img/products/ХК/Кета.jpg	ХК
+11	Палтус балык	img/products/ХК/Палтус балык.jpg	ХК
+12	Палтус теша	img/products/ХК/Палтус теша.jpg	ХК
+13	Сельдь олют	img/products/ХК/Сельдь олют.jpg	ХК
+14	Сельдь филе с перцем	img/products/ХК/Сельдь филе с перцем.jpg	ХК
+15	Корюшка малоротая	img/products/ХК/Корюшка малоротая.png	ХК
+16	Горбуша Балык	img/products/ХК/Горбуша Балык.jpg	ХК
+17	Ряпушка	img/products/ХК/Ряпушка.jpg	ХК
+18	Щука палочки	img/products/ХК/Щука палочки.jpg	ХК
+19	Лещ потрошеный	img/products/ХК/Лещ потрошеный.jpg	ХК
+20	Семга балык	img/products/ХК/Семга балык.jpg	ХК
+21	Щука юкола филе	img/products/ХК/Щука юкола филе.jpg	ХК
+22	Лещ	img/products/ХК/Лещ.jpg	ХК
+23	Сельдь тихоокеанская	img/products/ХК/Сельдь тихоокеанская.jpg	ХК
+24	Семга боковник	img/products/ХК/Семга боковник.jpg	ХК
+25	Форель радужная	img/products/ХК/Форель радужная.jpg	ХК
+26	Окунь морской пласт	img/products/ХК/Окунь морской пласт.jpg	ХК
+27	Кета боковник нарезной	img/products/ХК/Кета боковник нарезной.jpg	ХК
+28	Иваси	img/products/ХК/Иваси.jpg	ХК
+29	Форель	img/products/ХК/Форель.jpg	ХК
+30	Окунь потрошеный	img/products/ХК/Окунь потрошеный.jpg	ХК
+31	Горбуша филе	img/products/ХК/Горбуша филе.jpg	ХК
+32	Щука пласт нарезной	img/products/ХК/Щука пласт нарезной.jpg	ХК
+33	Муксун потрошеный	img/products/ХК/Муксун потрошеный.jpg	ХК
+34	Горбуша боковник	img/products/ХК/Горбуша боковник.jpg	ХК
+35	Брюшки семги	img/products/ХК/Брюшки семги.jpg	ХК
+36	Карась пласт	img/products/ХК/Карась пласт.jpg	ХК
+37	Кета нарезной	img/products/ХК/Кета нарезной.jpg	ХК
+38	Плотва	img/products/ХК/Плотва.jpg	ХК
+39	Горбуша филе нарезной	img/products/ХК/Горбуша филе нарезной.jpg	ХК
+40	Тунец со специями	img/products/ХК/Тунец со специями.jpg	ХК
+41	Пелядь	img/products/ХК/Пелядь.jpg	ХК
+42	Корюшка	img/products/ХК/Корюшка.jpg	ХК
+43	Скумбрия без головы	img/products/ХК/Скумбрия без головы.jpg	ХК
+44	Горбуша теша	img/products/ХК/Горбуша теша.jpg	ХК
+45	Кальмар щупальца	img/products/ХК/Кальмар щупальца.jpg	ХК
+46	Семга	img/products/ХК/Семга.jpg	ХК
+47	Палтус	img/products/ХК/Палтус.jpg	ХК
+48	Дорадо	img/products/ХК/Дорадо.jpg	ХК
+49	Лещ пласт	img/products/ХК/Лещ пласт.jpg	ХК
+50	Брюшки семги соленые	img/products/Соленая/Брюшки семги соленые.jpg	Соленая
+51	Скумбрия	img/products/Соленая/Скумбрия.jpg	Соленая
+52	Сельдь олют	img/products/Соленая/Сельдь олют.jpg	Соленая
+53	Сельдь тихоокеанская	img/products/Соленая/Сельдь тихоокеанская.jpg	Соленая
+54	Сельдь филе БШ	img/products/Соленая/Сельдь филе БШ.jpg	Соленая
+55	Форель малосоленая	img/products/Соленая/Форель малосоленая.jpg	Соленая
+56	Горбуша кусочки	img/products/Соленая/Горбуша кусочки.jpg	Соленая
+57	Молоки сельди соленые в масле	img/products/Соленая/Молоки сельди соленые в масле.jpg	Соленая
+58	Кета ломтики	img/products/Соленая/Кета ломтики.jpg	Соленая
+59	Килька пряного посола	img/products/Соленая/Килька пряного посола.jpg	Соленая
+60	Тюлька пряного посола	img/products/Соленая/Тюлька пряного посола.jpg	Соленая
+61	Форель ломтики	img/products/Соленая/Форель ломтики.jpg	Соленая
+62	Мойва пряного посола	img/products/Соленая/Мойва пряного посола.jpg	Соленая
+63	Мясные чипсы свинина	img/products/Снеки/Мясные чипсы свинина.png	Снеки
+64	Паутинка копченый	img/products/Снеки/Паутинка копченый.jpg	Снеки
+65	Фисташка	img/products/Снеки/Фисташка.jpg	Снеки
+66	Минтай шинкованный вяленый	img/products/Снеки/Минтай шинкованный вяленый.jpg	Снеки
+67	Чипсы из Марала 75гр	img/products/Снеки/Чипсы из Марала 75гр.png	Снеки
+68	Мясные чипсы говядина	img/products/Снеки/Мясные чипсы говядина.png	Снеки
+69	Сырные шарики	img/products/Снеки/Сырные шарики.jpg	Снеки
+70	Чипсы Lays(Ассорти)	img/products/Снеки/Чипсы Lays(Ассорти).png	Снеки
+71	сом соломка	img/products/Снеки/сом соломка.jpg	Снеки
+72	Арахис жареный	img/products/Снеки/Арахис жареный.png	Снеки
+73	Сыр сухой	img/products/Снеки/Сыр сухой.png	Снеки
+74	Стрипсы "Австрийские"	img/products/Снеки/Стрипсы "Австрийские".png	Снеки
+75	Тунец сол_суш соломка	img/products/Снеки/Тунец сол_суш соломка.jpg	Снеки
+76	Кольца кальмара сушеные	img/products/Снеки/Кольца кальмара сушеные.jpg	Снеки
+77	Кальмар пикантный	img/products/Снеки/Кальмар пикантный.jpg	Снеки
+78	Хворост мясной	img/products/Снеки/Хворост мясной.jpg	Снеки
+79	Новый восток арахис	img/products/Снеки/Новый восток арахис.png	Снеки
+80	Мясные чипсы	img/products/Снеки/Мясные чипсы.png	Снеки
+81	Саргуль белый копченый	img/products/Снеки/Саргуль белый копченый.jpg	Снеки
+82	Попкорн	img/products/Снеки/Попкорн.jpg	Снеки
+83	Макси чипсы	img/products/Снеки/Макси чипсы.jpg	Снеки
+84	Анчоус солено-сушеный	img/products/Снеки/Анчоус солено-сушеный.jpg	Снеки
+85	Пико мини	img/products/Снеки/Пико мини.png	Снеки
+86	Желтый полосатик	img/products/Снеки/Желтый полосатик.png	Снеки
+87	Колбаски Пиколини 50_70_100гр (Аджика,бекон,Чили)	img/products/Снеки/Колбаски Пиколини 50_70_100гр (Аджика,бекон,Чили).jpg	Снеки
+88	Арахи в глазури(Ассорти)	img/products/Снеки/Арахи в глазури(Ассорти).jpg	Снеки
+89	Щука солено-сушеная с перцем	img/products/Снеки/Щука солено-сушеная с перцем.jpeg	Снеки
+90	Янтарная  с перцем	img/products/Снеки/Янтарная  с перцем.jpg	Снеки
+91	Свиные колбаски	img/products/Снеки/Свиные колбаски.png	Снеки
+92	Минтай спинка филе сушено-вяленая	img/products/Снеки/Минтай спинка филе сушено-вяленая.jpg	Снеки
+93	Сухарики со вкусом вареных-раков	img/products/Снеки/Сухарики со вкусом вареных-раков.jpg	Снеки
+94	Арахис (асорти, микс)	img/products/Снеки/Арахис (асорти, микс).jpg	Снеки
+95	Чипсы из говядины 25г(перец красн.перец черный.классика)	img/products/Снеки/Чипсы из говядины 25г(перец красн.перец черный.классика).jpg	Снеки
+96	Язь пласт	img/products/Вяленая/Язь пласт.jpg	Вяленая
+97	Лещ не потрошеная	img/products/Вяленая/Лещ не потрошеная.jpg	Вяленая
+98	Тюлька	img/products/Вяленая/Тюлька.jpg	Вяленая
+99	Юкола кеты	img/products/Вяленая/Юкола кеты.jpg	Вяленая
+100	Камбала	img/products/Вяленая/Камбала.jpg	Вяленая
+101	Палочки кеты	img/products/Вяленая/Палочки кеты.jpg	Вяленая
+102	окунь	img/products/Вяленая/окунь.jpg	Вяленая
+103	Щука не потрошеная	img/products/Вяленая/Щука не потрошеная.jpg	Вяленая
+104	Щука пласт	img/products/Вяленая/Щука пласт.jpg	Вяленая
+105	Ряпушка	img/products/Вяленая/Ряпушка.jpg	Вяленая
+106	Икра язя	img/products/Вяленая/Икра язя.jpg	Вяленая
+107	Плотва	img/products/Вяленая/Плотва.jpg	Вяленая
+108	Щука(юкола) филе	img/products/Вяленая/Щука(юкола) филе.jpg	Вяленая
+109	Пелядь	img/products/Вяленая/Пелядь.jpg	Вяленая
+110	Корюшка	img/products/Вяленая/Корюшка.jpg	Вяленая
+111	Мойва	img/products/Вяленая/Мойва.jpg	Вяленая
+112	Килька	img/products/Вяленая/Килька.jpg	Вяленая
+113	Судак	img/products/Вяленая/Судак.jpg	Вяленая
+114	Окунь не потрошеная	img/products/Вяленая/Окунь не потрошеная.jpg	Вяленая
+115	Морская капуста мариноввонная	img/products/Салат/Морская капуста мариноввонная.jpg	Салат
+116	Морская капуста с луком	img/products/Салат/Морская капуста с луком.jpg	Салат
+117	Нерка в масле с зеленью	img/products/Салат/Нерка в масле с зеленью.jpg	Салат
+118	Морская капуста с кальмаром и морковью	img/products/Салат/Морская капуста с кальмаром и морковью.jpg	Салат
+119	По-корейски спаржа с морковью	img/products/Салат/По-корейски спаржа с морковью.jpg	Салат
+120	Морская капуста с сельдью	img/products/Салат/Морская капуста с сельдью.jpg	Салат
+121	Мидии в чесночном соусе	img/products/Салат/Мидии в чесночном соусе.jpg	Салат
+122	Язь пласт	img/products/ГК/Язь пласт.jpg	ГК
+123	Рулет кальмара	img/products/ГК/Рулет кальмара.jpg	ГК
+124	Щука кусок со специями	img/products/ГК/Щука кусок со специями.jpg	ГК
+125	Сельдь филе ароматная	img/products/ГК/Сельдь филе ароматная.jpg	ГК
+126	Лосось хребты	img/products/ГК/Лосось хребты.jpg	ГК
+127	Скумбрия пласт	img/products/ГК/Скумбрия пласт.jpg	ГК
+128	ДОРАДО	img/products/ГК/ДОРАДО.jpg	ГК
+129	Камбала без головы	img/products/ГК/Камбала без головы.jpg	ГК
+130	Щука пласт	img/products/ГК/Щука пласт.jpg	ГК
+131	Окунь морской без головы	img/products/ГК/Окунь морской без головы.jpg	ГК
+132	Роллы лососевые	img/products/ГК/Роллы лососевые.jpg	ГК
+133	Лещ потрошеный	img/products/ГК/Лещ потрошеный.jpg	ГК
+134	Судак вырезка ушки	img/products/ГК/Судак вырезка ушки.jpg	ГК
+135	Форель радужная в обвязке	img/products/ГК/Форель радужная в обвязке.jpg	ГК
+136	Терпуг	img/products/ГК/Терпуг.jpg	ГК
+137	Брюшки семги	img/products/ГК/Брюшки семги.jpg	ГК
+138	Кальмар филе	img/products/ГК/Кальмар филе.jpg	ГК
+139	Рулет горбуша+скумбрия	img/products/ГК/Рулет горбуша+скумбрия.jpg	ГК
+140	Горбуша кусочки	img/products/ГК/Горбуша кусочки.jpg	ГК
+141	Рулет семга+скумбрия	img/products/ГК/Рулет семга+скумбрия.jpg	ГК
+142	Минтай без головы	img/products/ГК/Минтай без головы.jpg	ГК
+143	Качемас из кальмара	img/products/ГК/Качемас из кальмара.jpg	ГК
+144	Рулет горбуша+масяляная	img/products/ГК/Рулет горбуша+масяляная.jpg	ГК
+145	Карась	img/products/ГК/Карась.jpg	ГК
+146	Перчатки ХБ	img/products/Другое/Перчатки ХБ.jpg	Другое
+147	Зажигаки СССР	img/products/Другое/Зажигаки СССР.jpeg	Другое
+148	Мыльные пузыри	img/products/Другое/Мыльные пузыри.jpg	Другое
+149	Зажигаки Oney турбо	img/products/Другое/Зажигаки Oney турбо.jpg	Другое
+150	Перчатки	img/products/Другое/Перчатки.jpg	Другое
+151	Зажигалка OneySH-03	img/products/Другое/Зажигалка OneySH-03.jpg	Другое
+152	Стики микс mini	img/products/Сладости/Стики микс mini.jpg	Сладости
+153	Кисло пудра	img/products/Сладости/Кисло пудра.jpg	Сладости
+154	Торнадо (Кола, апельсин, манго, клубника)	img/products/Сладости/Торнадо (Кола, апельсин, манго, клубника).jpg	Сладости
+155	Попкорн CorinCorn(ассорти)	img/products/Сладости/Попкорн CorinCorn(ассорти).jpg	Сладости
+\.
+
+
+--
+-- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.products_id_seq', 155, true);
+
+
+--
+-- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
