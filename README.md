@@ -1,14 +1,17 @@
-This site was created to trade any products such as snacks, fish, sweets and e.t.
+# Web сайт Атлантика
+Этот проект представляет собой Web-сайт для компании "Атлантика" для превлечения и ознакомнения клиентов с ассортиментом, а также чтобы упростить менеждеру задачу по отправке файла.
 
-If you need building data base
-you can use this commands
+## Технологии
+* Spring Web: Создание веб-приложений.
+* Spring Data: Упрощённый доступ к данным.
+* Spring JPA: ORM для реляционных баз данных.
+* Java 17: Современная версия Java на тот момент.
+* JavaScript: Клиентская логика в браузере.
+* PostgreSQL 14: Для хранения данных.
 
-pg_dump -U postgres atlantica > atlantica.sql
+## Основные функции
+* Каталог товаров: Клиенты могут просматривать ассортимент с удобным поиском и фильтрацией.
+* Контактная информация: Доступ к контактам и информации о компании.
 
-and add this to the server
-When you start the server and submit this site
-open database using:
-
-psql -U username -d dbname -f database_dump.sql
-or
-psql -U username -f database_dump.sql
+## Масштабируемость
+Благодаря использованию *Spring Framework* и *PostgreSQL*, проект может легко масштабироваться для поддержки увеличения количества пользователей и данных. Архитектура поддерживает добавление новых функций без значительных изменений в основной кодовой базе.
