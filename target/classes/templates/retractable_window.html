@@ -1,12 +1,9 @@
 <div th:fragment="rectangle-window" id="retractable" class="rectangle-fon">
     <div class = "d-flex flex-row">
         <ul class="nav align-items-center center_item">
-            <li>
+            <li class = "logo_retractable">
                 <image th:src="@{/img/logo.png}"></image>
             </li>
-<!--            <li class="dropdown__item line">-->
-<!--                <span class="dropdown__name text-white header-elem-regular" onclick="window.location.href ='/document/price-list.xlsx';">Скачать прайс-лист</span>-->
-<!--            </li>-->
             <li class="dropdown__item line">
                 <span class="dropdown_name text-white header-elem-regular" onclick="selected(this,'retractable')">Все</span>
             </li>

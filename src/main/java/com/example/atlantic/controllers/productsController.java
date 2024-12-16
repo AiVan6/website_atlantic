@@ -9,9 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class productsController {
 
@@ -20,33 +17,24 @@ public class productsController {
 
     private Iterable<Products> searchResults;
 
-//    @GetMapping("/")
-//    public String index(Model model){
-//        model.addAttribute("title","Атлантика");
-//        Iterable<Products> products = productsRepository.findAll();
-//
-//        model.addAttribute("products",products);
-//        return "index";
-//    }
-
-
     @GetMapping("/products")
-    public String productsPage(@RequestParam(required = false, name="searchTerm") String name, Model model){
+    public String productsPage(@RequestParam(required = false, name="searchTerm") String name, Model model) {
+
         model.addAttribute("title","Атлантика");
+
         Iterable<Products> products = productsRepository.findAll();
 
         model.addAttribute("products",products);
         searchResults = productsRepository.findByNameContainingIgnoreCase(name);
+
         return "products";
     }
 
 
     @GetMapping("/api/data")
-    public ResponseEntity<Iterable<Products>> getProduct(){
+    public ResponseEntity<Iterable<Products>> getProduct() {
 
         Iterable<Products> data = productsRepository.findAll();
-
-        System.out.println(searchResults);
 
         if(searchResults.iterator().hasNext()){
             data = searchResults;
@@ -54,5 +42,4 @@ public class productsController {
 
         return ResponseEntity.ok(data);
     }
-
 }

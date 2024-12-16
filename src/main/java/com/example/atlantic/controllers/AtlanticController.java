@@ -28,21 +28,15 @@ public class AtlanticController {
         arrayList = new ArrayList<>();
         for (int i = 1; i <= 3; i++)
             arrayList.add(productsRepository.findById((long) i));
-//        arrayList.add(productsRepository.findById((long) 2));
-//        arrayList.add(productsRepository.findById((long) 6));
 
-        model.addAttribute("products",arrayList);
+        model.addAttribute("products", arrayList);
 
         return "index";
     }
 
 
     @GetMapping("/api/main_products")
-    public ResponseEntity<ArrayList<Optional<Products>>> getProduct(){
-        System.out.println(arrayList);
+    public ResponseEntity<ArrayList<Optional<Products>>> getProduct() {
         return ResponseEntity.ok(arrayList);
     }
-
 }
-
-
