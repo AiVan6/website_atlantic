@@ -11,6 +11,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script th:src="@{/js/pop-up_window.js}"></script>
+<!--    <script th:src="@{/js/mapScrolling.js}"></script>-->
 <!--    <script th:src="@{/js/products.js}"></script>-->
 
 </head>
@@ -45,7 +46,7 @@
         <div class="indentation warning">
             <p>
                 Для получения точной и корректной информации,<br/>
-                рекомендуется обратиться к оператору
+                рекомендуется обратиться к менеджеру
             </p>
         </div>
     </div>
@@ -79,7 +80,6 @@
                 <div class="row justify-content-center about-product" style="padding-bottom: 10%">
                     <button class="btn-open-popup" onclick="openPopup()">Как заказать?</button>
 
-<!--                    <a ><img src="/img/icons/Button_how_.png" width="90%" height="100%"/></a>-->
                 </div>
             </div>
 
@@ -94,9 +94,9 @@
     <a href="/products"><img src="/img/icons/More.png" ></a><br/>
     </div>
 
-    <div class="indentation">
-        <a href="/document/price-list.xlsx"><img src="/img/icons/downloadPriceList.png"></a>
-    </div>
+<!--    <div class="indentation">-->
+<!--        <a href="/document/price-list.xlsx"><img src="/img/icons/downloadPriceList.png"></a>-->
+<!--    </div>-->
 </div>
 
 <div class="indentation container product-center">
@@ -110,36 +110,58 @@
 
 <div class="indentation container">
     <div class="heading-elem-bold" id="location"><h3>МЕСТОПОЛОЖЕНИЕ</h3></div><br/>
-<!--    <a class="dg-widget-link" href="http://2gis.ru/biysk/firm/2815278048274919/center/85.20303010940552,52.53623388597239/zoom/17?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">-->
-<!--        Посмотреть на карте Бийска</a><div class="dg-widget-link">-->
-<!--    <a href="http://2gis.ru/biysk/center/85.203036,52.536078/zoom/17/routeTab/rsType/bus/to/85.203036,52.536078╎Атлантика, оптовая компания?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">-->
 
-<!--    Найти проезд до Атлантика, оптовая компания</a></div><script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>-->
-<!--    <script charset="utf-8">new DGWidgetLoader({"width":640,"height":600,"borderColor":"#a3a3a3","pos":{"lat":52.53623388597239,"lon":85.20303010940552,"zoom":17},"opt":{"city":"biysk"},"org":[{"id":"2815278048274919"}]});</script><noscript style="color:#c00;font-size:16px;font-weight:bold;">-->
-<!--    Виджет карты использует JavaScript. Включите его в настройках вашего браузера.</noscript>-->
-    <div>
+    <div th:id="map" style="width: 100%; height: 600px; pointer-events: none;">
         <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A70609afd92c346fee039044027592d022035b49b058c190d35b20cd46c4910a3&amp;width=100%&amp;height=600&amp;lang=en_FR&amp;scroll=false;"></script>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const mapElement = $('#map');
+            let isMapEnabled = false;
+
+            // Включаем перемещение карты при двойном щелчке
+            mapElement.on('dblclick', function() {
+                isMapEnabled = !isMapEnabled;
+                mapElement.css('pointer-events', isMapEnabled ? 'auto' : 'none'); // Включаем/отключаем взаимодействие с картой
+                console.log("Map interaction:", isMapEnabled ? "Enabled" : "Disabled");
+            });
+
+            // Блокируем прокрутку карты при касании
+            mapElement.on('touchstart', function(e) {
+                if (!isMapEnabled) {
+                    e.preventDefault(); // Предотвращаем прокрутку
+                    console.log("Touch event prevented.");
+                }
+            });
+
+            // Отладочный вывод при нажатии на карту
+            mapElement.on('click', function() {
+                console.log("Map clicked.");
+            });
+        });
+    </script>
+
+
+
 </div>
 <footer>
     <div class="indentation container">
         <div class="justify-content-center">
             <div class="heading-elem-bold"><h4>Контакты</h4></div>
             <div class="indentation">
-                <a href="#"><img src="/img/icons/icons8-логотип-telegram-48.png" /></a>
-                <a href="#"><img src="/img/icons/icons8-whatsapp-48.png" /></a>
+                <a href="https://t.me/Atlantika8"><img src="/img/icons/icons8-логотип-telegram-48.png" /></a>
+                <a href="https://api.whatsapp.com/send/?phone=+79069611329"><img src="/img/icons/icons8-whatsapp-48.png" /></a>
                 <a href="#"><img src="/img/icons/icons8-телефон-40.png" /></a>
-            </div>
-            <div class="number mt-5">
-                <p>телефон для связи: +7 (906) 961-13-29</p>
             </div>
 
             <div class="number mt-5">
-                <p>г. Бийск, Владимира Ленина улица, 312 — 1 этаж</p>
+                <p>г.Бийск, Владимира Ленина улица, 312 — 1 этаж</p>
             </div>
 
             <div class="indentation">
-                <p>Version 1.1     Icons by <a style="color: #000" href="https://icons8.ru/">icons8</a></p>
+                <p>Version 0.0.1     Icons by <a style="color: #000" href="https://icons8.ru/">icons8</a></p>
 
             </div>
         </div>
@@ -148,8 +170,6 @@
 
 </footer>
 <script>
-
-
 
     const up = document.getElementById('up');
 
@@ -164,16 +184,6 @@
         }
     };
 
-    // const maxMedia = window.matchMedia('screen and (max-width: 1040px)');
-    //
-    // maxMedia.addListener((e) => {
-    //     if (!e.matches) {
-    //         document.getElementById('product-list').classList.add('product-center');
-    //     } else {
-    //         document.getElementById('product-list').classList.remove('product-center');
-    //     }
-    // });
-
     window.addEventListener('load', () => {
         const productList = document.getElementById('product-list');
         function updateClass() {
@@ -187,5 +197,6 @@
         window.addEventListener('resize', updateClass);});
 
 </script>
+
 </body>
 </html>

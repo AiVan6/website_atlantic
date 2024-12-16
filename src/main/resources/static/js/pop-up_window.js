@@ -1,6 +1,5 @@
 
 function openPopup() {
-    console.log("!!!!!!!!!");
     document.getElementById('popupOverlay').style.display = 'flex';
     document.body.style.overflow = "hidden";
 }
