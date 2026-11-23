@@ -1,0 +1,38 @@
+# Caddy — обратный прокси с автоматическим HTTPS (Let's Encrypt / ZeroSSL).
+# Домен задаётся переменной SITE_DOMAIN в .env. Для SITE_DOMAIN=localhost Caddy выпускает
+# локальный самоподписанный сертификат — удобно для проверки без настоящего домена.
+# E-mail для уведомлений Let's Encrypt необязателен (сертификаты продлеваются автоматически).
+# Чтобы получать письма о проблемах с сертификатом, добавьте в начало файла:
+#   {
+#   	email you@example.ru
+#   }
+
+# Общие настройки ответа
+(common) {
+	encode zstd gzip
+
+	header {
+		# HTTPS обязателен: браузер запоминает это на год
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		# Не раскрываем, что за прокси работает сервер
+		-Server
+		-Via
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}
+
+{$SITE_DOMAIN:localhost} {
+	import common
+	# CSP и прочие заголовки безопасности выставляет само приложение (SecurityHeadersFilter)
+	reverse_proxy site:8080
+}
+
+# www → основной домен (нужна DNS-запись для www.<домен>)
+www.{$SITE_DOMAIN:localhost} {
+	import common
+	redir https://{$SITE_DOMAIN:localhost}{uri} permanent
+}
