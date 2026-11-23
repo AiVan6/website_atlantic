@@ -1,0 +1,49 @@
+services:
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: atlantic
+    restart: unless-stopped
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/${DB_NAME:-atlanticdb}
+      DB_USERNAME: ${DB_USERNAME:-atlantic}
+      DB_PASSWORD: ${DB_PASSWORD:?Задайте DB_PASSWORD в файле .env}
+      PORT: 8080
+    ports:
+      - "${SITE_PORT:-8080}:8080"
+    networks:
+      - backend
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    container_name: atlantic-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-atlanticdb}
+      POSTGRES_USER: ${DB_USERNAME:-atlantic}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Задайте DB_PASSWORD в файле .env}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./docker/db/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh:ro
+      - ./atlantica.dump:/docker-entrypoint-initdb.d/dump/atlantica.dump:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks:
+      - backend
+    # Порт БД доступен только с локальной машины (для IDE и локального запуска backend).
+    ports:
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
+
+networks:
+  backend:
+    driver: bridge
+
+volumes:
+  db_data:

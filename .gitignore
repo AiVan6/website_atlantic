@@ -1,0 +1,18 @@
+# Сборка
+target/
+frontend/node_modules/
+frontend/dist/
+
+# Секреты и локальные настройки
+.env
+*.local
+
+# IDE
+.idea/workspace.xml
+.idea/shelf/
+.vscode/
+*.iml
+
+# Прочее
+*.log
+.DS_Store
